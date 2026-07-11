@@ -1,0 +1,28 @@
+{
+	admin off
+	auto_https off
+}
+
+(common) {
+	encode zstd gzip
+	header {
+		X-Content-Type-Options nosniff
+		X-Frame-Options SAMEORIGIN
+		Referrer-Policy no-referrer
+	}
+}
+
+http://dashboard.home.arpa {
+	import common
+	reverse_proxy homepage:3000
+}
+
+http://status.home.arpa {
+	import common
+	reverse_proxy uptime-kuma:3001
+}
+
+http://photos.home.arpa {
+	import common
+	reverse_proxy {$WINDOWS_LAN_IP}:2283
+}

@@ -1,0 +1,45 @@
+name: lantern
+
+services:
+  caddy:
+    image: ${CADDY_IMAGE:-caddy:2.11.4}
+    restart: unless-stopped
+    environment:
+      WINDOWS_LAN_IP: ${WINDOWS_LAN_IP:-192.168.215.218}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../services/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - lantern
+
+  homepage:
+    image: ${HOMEPAGE_IMAGE:-ghcr.io/gethomepage/homepage:v1.13.1}
+    restart: unless-stopped
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: dashboard.home.arpa
+    volumes:
+      - ../services/homepage:/app/config:ro
+    networks:
+      - lantern
+
+  uptime-kuma:
+    image: ${UPTIME_KUMA_IMAGE:-louislam/uptime-kuma:2.3.2}
+    restart: unless-stopped
+    volumes:
+      - uptime_kuma_data:/app/data
+    networks:
+      - lantern
+
+networks:
+  lantern:
+    name: lantern
+
+volumes:
+  caddy_data:
+  caddy_config:
+  uptime_kuma_data:
+

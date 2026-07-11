@@ -1,0 +1,45 @@
+---
+domain: home.arpa
+discovered_at: "2026-07-11T23:30:00+04:00"
+
+devices:
+  windows:
+    hostname: AAMSTHINKPADX1
+    dns_name: windows.home.arpa
+    role: application-host
+    os: Windows 11 Pro build 26200
+    interfaces:
+      - name: Wi-Fi
+        mac: "44:E5:17:99:4D:B4"
+        ipv4: 192.168.215.218
+        prefix_length: 24
+        assignment: dhcp
+        reservation_confirmed: false
+    ssh_port: 22
+    rdp_supported: true
+    rdp_enabled: false
+    notes:
+      - Active discovery network was AAMSNote20Ultra5G and may be temporary.
+
+  lantern-core:
+    hostname: lantern-core
+    dns_name: lantern-core.home.arpa
+    role: infrastructure
+    state: proposed
+    hosting: Hyper-V Generation 2 VM
+    os: Ubuntu Server LTS
+    resources:
+      vcpus: 2
+      memory_mib: 4096
+      disk_gib: 40
+    interfaces:
+      - name: eth0
+        ipv4: 192.168.215.210
+        prefix_length: 24
+        assignment: proposed-dhcp-reservation
+        reservation_confirmed: false
+    gateway: 192.168.215.63
+    notes:
+      - Address is provisional until the intended router DHCP pool is inspected.
+      - Attach to a Hyper-V external switch, not Default Switch or WSL NAT.
+

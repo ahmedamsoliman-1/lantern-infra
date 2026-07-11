@@ -1,0 +1,7 @@
+services:
+  caddy:
+    ports:
+      # Bind to the Lantern Core LAN address after its reservation is confirmed.
+      - "${LANTERN_CORE_IP}:80:80"
+      - "${LANTERN_CORE_IP}:443:443"
+

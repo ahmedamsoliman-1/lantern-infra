@@ -1,0 +1,76 @@
+---
+domain: home.arpa
+discovered_at: "2026-07-11T23:30:00+04:00"
+
+services:
+  windows-ssh:
+    hostname: windows
+    protocol: tcp
+    upstream: 192.168.215.218:22
+    state: discovered
+    public_on_lan: true
+    authentication: ssh
+
+  photos:
+    hostname: photos
+    protocol: http
+    upstream: 192.168.215.218:2283
+    health_path: /
+    state: discovered
+    public_on_lan: true
+    implementation: Immich v2.7.5
+
+  kibana:
+    hostname: kibana
+    protocol: http
+    upstream: 192.168.215.218:5601
+    health_path: /
+    state: discovered
+    public_on_lan: false
+    implementation: Kibana 8.17.3
+    notes:
+      - Authentication and proxy requirements must be reviewed before publication.
+
+  elastic:
+    hostname: elastic
+    protocol: http
+    upstream: 192.168.215.218:9200
+    health_path: /
+    state: discovered
+    public_on_lan: false
+    implementation: Elasticsearch 8.17.3
+    notes:
+      - Administrative API; do not broadly expose through Caddy.
+
+  dashboard:
+    hostname: dashboard
+    protocol: http
+    upstream: homepage:3000
+    health_path: /
+    state: planned
+    public_on_lan: true
+
+  status:
+    hostname: status
+    protocol: http
+    upstream: uptime-kuma:3001
+    health_path: /
+    state: planned
+    public_on_lan: true
+
+  dns:
+    hostname: dns
+    protocol: http
+    upstream: pihole
+    health_path: /admin/
+    state: planned
+    public_on_lan: true
+
+  containers:
+    hostname: containers
+    protocol: http
+    upstream: portainer:9000
+    health_path: /
+    state: optional
+    public_on_lan: true
+

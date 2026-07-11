@@ -1,0 +1,13 @@
+---
+domain: home.arpa
+devices:
+  lantern-core:
+    hostname: lantern-core
+    ip: 192.168.1.10
+    role: infrastructure
+  windows:
+    hostname: windows
+    ip: 192.168.1.20
+    role: application-host
+    ssh_port: 22
+

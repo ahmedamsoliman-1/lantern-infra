@@ -1,0 +1,5 @@
+# Phase 7 placeholder. Pin and validate RustDesk Server OSS images immediately
+# before deployment; do not expose these ports through the router.
+name: lantern-rustdesk
+services: {}
+

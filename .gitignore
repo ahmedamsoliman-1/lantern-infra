@@ -1,0 +1,17 @@
+.env
+secrets/
+state/*
+!state/.gitkeep
+backups/*
+!backups/README.md
+*.tar
+*.tar.gz
+*.age
+*.key
+*.pem
+*.crt
+*.pfx
+*.db
+*.sqlite*
+.DS_Store
+

@@ -1,0 +1,5 @@
+# Reference fragment. The canonical declaration is in compose.yaml.
+networks:
+  lantern:
+    name: lantern
+

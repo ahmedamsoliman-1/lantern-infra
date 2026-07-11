@@ -1,0 +1,13 @@
+---
+- Infrastructure:
+    - Status:
+        href: http://status.home.arpa
+        description: Uptime Kuma
+    - Windows:
+        href: ssh://windows.home.arpa
+        description: Windows application host
+- Applications:
+    - Photos:
+        href: http://photos.home.arpa
+        description: Immich
+
