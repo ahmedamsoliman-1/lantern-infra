@@ -22,12 +22,11 @@ authorization to configure static addresses:
 | Network | `192.168.215.0/24` |
 | Gateway and current DNS | `192.168.215.63` |
 | Windows (`windows.home.arpa`) | reserve current lease `192.168.215.218` for MAC `44:E5:17:99:4D:B4` |
-| Lantern Core (`lantern-core.home.arpa`) | reserve `192.168.215.210` for the VM after confirming it is outside the DHCP dynamic pool and unused |
+| Lantern Core (`lantern-core.home.arpa`) | use the DHCP address assigned by the current hotspot and record it after first boot |
 
-Before Phase 2, repeat network discovery on the intended home router, inspect
-its DHCP pool, and create router-side reservations. Prefer reservations over
-guest-side static addressing. Do not deploy Pi-hole to the whole LAN while the
-host is connected through this temporary network.
+The current hotspot is the available Lantern LAN. It may not support DHCP
+reservations, so Phase 2 begins with DHCP and records the observed VM address.
+Do not deploy Pi-hole to every client until address-change behavior is tested.
 
 ## Host
 
@@ -124,10 +123,10 @@ Important findings from the listener snapshot are detailed in
 
 ## Phase 2 prerequisites and open checks
 
-1. Connect Windows to the intended permanent LAN and repeat the address,
-   gateway, DNS, lease, and profile checks.
-2. In the router, determine the DHCP pool and reserve addresses for Windows and
-   the future VM. Confirm any proposed address is unused.
+1. Record the address assigned to the VM by the current hotspot and test
+   Windows-to-VM and Mac-to-VM communication.
+2. Check whether the hotspot offers DHCP reservation or client-isolation
+   controls; use DHCP without inventing a static address if it does not.
 3. Run Hyper-V inventory from an elevated session and record existing VMs and
    switches before creating an external switch.
 4. Confirm whether the external switch will use Wi-Fi or a more stable Ethernet
@@ -138,4 +137,3 @@ Important findings from the listener snapshot are detailed in
    Kibana, and Elasticsearch before exposing friendly hostnames.
 7. Decide whether RDP should be enabled later as the secondary remote desktop
    path; it remains disabled for now.
-

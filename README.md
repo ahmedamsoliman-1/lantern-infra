@@ -9,13 +9,15 @@ Hyper-V and remains private to the trusted LAN.
 
 - Phase 0 host discovery: complete
 - Phase 1 repository bootstrap: complete
-- VM and services: not deployed
+- Phase 2 VM: Ubuntu installed; guest bootstrap and SSH acceptance checks pending
+- Services: not deployed
 - Network addresses: provisional until discovery is repeated on the permanent
   home network
 
 Start with [the architecture](docs/architecture.md), then follow
-[installation](docs/installation.md). The original scope and phase plan remain
-in `initial_plan.md`.
+[installation](docs/installation.md). Current VM acceptance status is recorded
+in [Phase 2 status](docs/phase2-status.md). The original scope and phase plan
+remain in `initial_plan.md`.
 
 ## Operator commands
 
@@ -37,4 +39,3 @@ inventory structure, Compose rendering, and the Caddy configuration.
 Lantern version one is LAN-only. Do not add router port forwarding. Never
 commit `.env`, credentials, local CA material, runtime databases, RustDesk
 keys, or backups.
-

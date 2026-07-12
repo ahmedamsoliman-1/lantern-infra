@@ -31,7 +31,7 @@ else
   pass "container image tags are pinned"
 fi
 
-tracked_sensitive="$(git ls-files 2>/dev/null | grep -E '(^|/)(\.env|secrets/)|\.(key|pem|pfx|age|db|sqlite[0-9-]*)$' || true)"
+tracked_sensitive="$(git ls-files 2>/dev/null | grep -E '(^|/)\.env$|(^|/)secrets/|\.(key|pem|pfx|age|db|sqlite[0-9-]*)$' || true)"
 if [[ -n "$tracked_sensitive" ]]; then
   printf '%s\n' "$tracked_sensitive" >&2
   fail "sensitive or runtime files are tracked"

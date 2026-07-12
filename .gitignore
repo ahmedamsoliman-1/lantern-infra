@@ -14,4 +14,4 @@ backups/*
 *.db
 *.sqlite*
 .DS_Store
-
+temp/
