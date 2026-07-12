@@ -15,3 +15,4 @@ backups/*
 *.sqlite*
 .DS_Store
 temp/
+services/homepage/logs/

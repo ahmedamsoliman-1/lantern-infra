@@ -29,10 +29,11 @@ services:
     image: ${CADDY_IMAGE:-caddy:2.11.4}
     restart: unless-stopped
     environment:
+      LANTERN_CORE_IP: ${LANTERN_CORE_IP:-192.168.215.253}
       WINDOWS_LAN_IP: ${WINDOWS_LAN_IP:-192.168.215.218}
     ports:
-      - "80:80"
-      - "443:443"
+      - "${LANTERN_CORE_IP:-192.168.215.253}:80:80"
+      - "${LANTERN_CORE_IP:-192.168.215.253}:443:443"
     volumes:
       - ../services/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
@@ -44,9 +45,9 @@ services:
     image: ${HOMEPAGE_IMAGE:-ghcr.io/gethomepage/homepage:v1.13.1}
     restart: unless-stopped
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: dashboard.home.arpa
+      HOMEPAGE_ALLOWED_HOSTS: dashboard.home.arpa,${LANTERN_CORE_IP:-192.168.215.253}
     volumes:
-      - ../services/homepage:/app/config:ro
+      - ../services/homepage:/app/config
     networks:
       - lantern
 

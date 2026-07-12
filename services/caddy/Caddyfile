@@ -12,6 +12,12 @@
 	}
 }
 
+# Immediate dashboard access before a client adopts Lantern DNS.
+http://{$LANTERN_CORE_IP} {
+	import common
+	reverse_proxy homepage:3000
+}
+
 http://dashboard.home.arpa {
 	import common
 	reverse_proxy homepage:3000

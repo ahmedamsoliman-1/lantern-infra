@@ -16,7 +16,7 @@ services:
     protocol: http
     upstream: 192.168.215.218:2283
     health_path: /
-    state: discovered
+    state: deployed-via-caddy-http
     public_on_lan: true
     implementation: Immich v2.7.5
 
@@ -47,7 +47,7 @@ services:
     protocol: http
     upstream: homepage:3000
     health_path: /
-    state: planned
+    state: deployed-http
     public_on_lan: true
 
   status:
@@ -55,7 +55,7 @@ services:
     protocol: http
     upstream: uptime-kuma:3001
     health_path: /
-    state: planned
+    state: deployed-http-awaiting-setup
     public_on_lan: true
 
   dns:
@@ -63,7 +63,7 @@ services:
     protocol: http
     upstream: pihole
     health_path: /admin/
-    state: deployed-awaiting-caddy
+    state: deployed-http
     public_on_lan: true
 
   dns-resolver:
