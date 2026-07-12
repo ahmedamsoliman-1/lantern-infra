@@ -11,8 +11,8 @@ services:
       FTLCONF_dns_upstreams: ${UPSTREAM_DNS:-192.168.215.63}
       FTLCONF_dns_domain_name: ${LANTERN_DOMAIN:-home.arpa}
       FTLCONF_dns_hosts: |-
-        ${LANTERN_CORE_IP:-192.168.215.253} lantern-core.home.arpa dashboard.home.arpa status.home.arpa dns.home.arpa
-        ${WINDOWS_LAN_IP:-192.168.215.218} windows.home.arpa photos.home.arpa
+        ${LANTERN_CORE_IP:-192.168.215.253} lantern-core.home.arpa dashboard.home.arpa status.home.arpa dns.home.arpa photos.home.arpa
+        ${WINDOWS_LAN_IP:-192.168.215.218} windows.home.arpa
     ports:
       # Bind only to the VM's LAN address so systemd-resolved can retain its
       # loopback stub on 127.0.0.53:53.
