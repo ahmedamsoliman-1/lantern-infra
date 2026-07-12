@@ -63,8 +63,18 @@ services:
     protocol: http
     upstream: pihole
     health_path: /admin/
-    state: planned
+    state: deployed-awaiting-caddy
     public_on_lan: true
+
+  dns-resolver:
+    hostname: lantern-core
+    protocol: dns
+    upstream: 192.168.215.253:53
+    state: deployed
+    public_on_lan: true
+    implementation: Pi-hole 2026.07.2
+    notes:
+      - Current address is a hotspot DHCP lease and may change after restart.
 
   containers:
     hostname: containers
@@ -73,4 +83,3 @@ services:
     health_path: /
     state: optional
     public_on_lan: true
-

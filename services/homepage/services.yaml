@@ -1,5 +1,8 @@
 ---
 - Infrastructure:
+    - DNS:
+        href: http://dns.home.arpa/admin/
+        description: Pi-hole
     - Status:
         href: http://status.home.arpa
         description: Uptime Kuma
@@ -10,4 +13,3 @@
     - Photos:
         href: http://photos.home.arpa
         description: Immich
-

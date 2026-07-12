@@ -22,6 +22,11 @@ http://status.home.arpa {
 	reverse_proxy uptime-kuma:3001
 }
 
+http://dns.home.arpa {
+	import common
+	reverse_proxy pihole:80
+}
+
 http://photos.home.arpa {
 	import common
 	reverse_proxy {$WINDOWS_LAN_IP}:2283

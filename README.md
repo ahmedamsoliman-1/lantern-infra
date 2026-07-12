@@ -9,10 +9,10 @@ Hyper-V and remains private to the trusted LAN.
 
 - Phase 0 host discovery: complete
 - Phase 1 repository bootstrap: complete
-- Phase 2 VM: Ubuntu installed; guest bootstrap and SSH acceptance checks pending
-- Services: not deployed
-- Network addresses: provisional until discovery is repeated on the permanent
-  home network
+- Phase 2 VM: operational; disk expansion and final restart checks pending
+- Phase 3 DNS: Pi-hole deployed and verified with direct Windows queries
+- Other services: not deployed
+- Network addresses: hotspot DHCP; current Lantern Core lease is provisional
 
 Start with [the architecture](docs/architecture.md), then follow
 [installation](docs/installation.md). Current VM acceptance status is recorded
