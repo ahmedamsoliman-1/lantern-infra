@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 COMPOSE := docker compose -f compose/compose.yaml
 
-.PHONY: bootstrap validate deploy deploy-dns deploy-web status logs update backup test stop
+.PHONY: bootstrap validate deploy deploy-dns deploy-web deploy-https status logs update backup test stop
 
 bootstrap:
 	./scripts/bootstrap.sh
@@ -17,6 +17,9 @@ deploy-dns: validate
 
 deploy-web: validate
 	./scripts/deploy-web.sh
+
+deploy-https: validate
+	./scripts/deploy-https.sh
 
 status:
 	./scripts/status.sh

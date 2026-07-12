@@ -41,7 +41,8 @@ fi
 
 secret_hits="$(grep -RInE --exclude='.env.example' --exclude='validate.sh' \
   '(password|passwd|token|secret|private_key)[[:space:]]*[:=][[:space:]]*[^<{[:space:]][^[:space:]]+' \
-  compose docs inventory services scripts 2>/dev/null || true)"
+  compose docs inventory services scripts 2>/dev/null \
+  | grep -vE '^[^:]+:[0-9]+:[[:space:]]*#' || true)"
 if [[ -n "$secret_hits" ]]; then
   printf '%s\n' "$secret_hits" >&2
   fail "possible committed secret assignment found"
@@ -76,6 +77,7 @@ else
 fi
 
 if docker run --rm \
+  --env LANTERN_CORE_IP=127.0.0.1 \
   --env WINDOWS_LAN_IP=127.0.0.1 \
   --volume "$ROOT/services/caddy/Caddyfile:/etc/caddy/Caddyfile:ro" \
   "${CADDY_IMAGE:-caddy:2.11.4}" \

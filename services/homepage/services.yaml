@@ -1,15 +1,15 @@
 ---
 - Infrastructure:
     - DNS:
-        href: http://dns.home.arpa/admin/
+        href: https://dns.home.arpa/admin/
         description: Pi-hole
     - Status:
-        href: http://status.home.arpa
+        href: https://status.home.arpa
         description: Uptime Kuma
     - Windows:
         href: ssh://windows.home.arpa
         description: Windows application host
 - Applications:
     - Photos:
-        href: http://photos.home.arpa
+        href: https://photos.home.arpa
         description: Immich

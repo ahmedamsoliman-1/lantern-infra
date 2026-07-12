@@ -11,7 +11,7 @@ Routes:
 | `http://status.home.arpa` | Uptime Kuma on the Lantern Docker network |
 | `http://dns.home.arpa/admin/` | Pi-hole on the Lantern Docker network |
 | `http://photos.home.arpa` | Immich on Windows at port 2283 |
-| `http://<LANTERN_CORE_IP>` | Homepage fallback before client DNS setup |
+| `http://<LANTERN_CORE_IP>` | HTTP-only Homepage fallback when client DNS is unavailable |
 
 ## Verified deployment
 

@@ -1,6 +1,5 @@
 {
 	admin off
-	auto_https off
 }
 
 (common) {
@@ -10,30 +9,37 @@
 		X-Frame-Options SAMEORIGIN
 		Referrer-Policy no-referrer
 	}
+
+	tls internal
 }
 
-# Immediate dashboard access before a client adopts Lantern DNS.
+# HTTP-only emergency dashboard access when client DNS is unavailable.
 http://{$LANTERN_CORE_IP} {
+	encode zstd gzip
+	header {
+		X-Content-Type-Options nosniff
+		X-Frame-Options SAMEORIGIN
+		Referrer-Policy no-referrer
+	}
+	reverse_proxy homepage:3000
+}
+
+dashboard.home.arpa {
 	import common
 	reverse_proxy homepage:3000
 }
 
-http://dashboard.home.arpa {
-	import common
-	reverse_proxy homepage:3000
-}
-
-http://status.home.arpa {
+status.home.arpa {
 	import common
 	reverse_proxy uptime-kuma:3001
 }
 
-http://dns.home.arpa {
+dns.home.arpa {
 	import common
 	reverse_proxy pihole:80
 }
 
-http://photos.home.arpa {
+photos.home.arpa {
 	import common
 	reverse_proxy {$WINDOWS_LAN_IP}:2283
 }
