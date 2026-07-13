@@ -51,9 +51,9 @@ Firewall still determines whether remote traffic can reach it.
 | 49664, 49884, 55950–55952, 57302–57309, 63752–63753 | mixed | Dynamic Windows discovery/service endpoints. |
 | 59870–59871 | all IPv4, Logi Options+ | Vendor utility. |
 
-## Planned Lantern Core LAN exposure
+## Lantern Core LAN exposure
 
-These are planned on the VM, not currently opened by this phase:
+These ports are deployed unless explicitly marked optional:
 
 | Port | Protocol | Purpose | Intended source |
 | --- | --- | --- | --- |
@@ -65,5 +65,6 @@ These are planned on the VM, not currently opened by this phase:
 | 21116 | UDP | RustDesk ID/heartbeat | trusted LAN only |
 | 21118–21119 | TCP | RustDesk web clients, only if required | trusted LAN only |
 
-Verify the RustDesk version's required ports immediately before Phase 7. No
-router port forwarding is part of version one.
+RustDesk Server OSS `1.1.15` requirements were verified against the official
+documentation on 2026-07-13. Web-client ports remain disabled. No router port
+forwarding is part of version one.

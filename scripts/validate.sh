@@ -76,6 +76,13 @@ else
   fail "Docker Compose configuration is invalid"
 fi
 
+if LANTERN_CORE_IP=127.0.0.1 \
+  docker compose -f services/rustdesk/compose.yaml config --quiet; then
+  pass "RustDesk Compose renders"
+else
+  fail "RustDesk Compose configuration is invalid"
+fi
+
 if docker run --rm \
   --env LANTERN_CORE_IP=127.0.0.1 \
   --env WINDOWS_LAN_IP=127.0.0.1 \

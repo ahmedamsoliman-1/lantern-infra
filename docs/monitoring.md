@@ -13,8 +13,8 @@ Use a 60-second heartbeat and 3 retries unless noted otherwise.
 | --- | --- | --- | --- |
 | Lantern Dashboard | HTTP(s) | `http://homepage:3000` | HTTP 200–299 |
 | Pi-hole UI | HTTP(s) | `http://pihole/admin/` | HTTP 200–399 |
-| Immich | HTTP(s) | `http://192.168.202.218:2283` | HTTP 200–299 |
-| Windows SSH | TCP Port | `192.168.202.218:22` | connection succeeds |
+| Immich | HTTP(s) | `http://192.168.102.40:2283` | HTTP 200–299 |
+| Windows SSH | TCP Port | `192.168.102.40:22` | connection succeeds |
 | Pi-hole DNS | TCP Port | `pihole:53` | DNS listener accepts connections |
 | Caddy HTTPS | TCP Port | `caddy:443` | HTTPS listener accepts connections |
 
@@ -65,3 +65,6 @@ Homepage was deliberately stopped and Kuma detected the outage. Homepage then
 returned to green after restoration. Restarting Uptime Kuma preserved all
 monitor definitions and event history, satisfying the Phase 6 acceptance
 criteria.
+
+After any uplink change, edit the two Windows-target monitors to the current
+`WINDOWS_LAN_IP`. Docker-internal monitors do not require changes.

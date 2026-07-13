@@ -42,7 +42,7 @@ redirect, and opens UFW TCP port 443 only after all tests pass.
 Copy the public certificate from Lantern Core:
 
 ```powershell
-scp ahmed@192.168.202.253:/opt/lantern/state/certificates/lantern-root-ca.crt $env:TEMP\lantern-root-ca.crt
+scp ahmed@192.168.102.253:/opt/lantern/state/certificates/lantern-root-ca.crt $env:TEMP\lantern-root-ca.crt
 certutil -hashfile $env:TEMP\lantern-root-ca.crt SHA256
 Import-Certificate -FilePath $env:TEMP\lantern-root-ca.crt -CertStoreLocation Cert:\CurrentUser\Root
 ```

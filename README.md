@@ -14,7 +14,7 @@ Hyper-V and remains private to the trusted LAN.
 - Phase 4 HTTP: Caddy, Homepage, Uptime Kuma, Pi-hole UI, and Immich routes verified
 - Phase 5 HTTPS: deployed; named routes work, Windows browser trust remains unresolved
 - Phase 6 monitoring: complete; six monitors and outage persistence verified
-- Phase 7 remote desktop: next
+- Phase 7 remote desktop: RustDesk server operational; client acceptance pending
 - Network addresses: hotspot DHCP; current Lantern Core lease is provisional
 
 Start with [the architecture](docs/architecture.md), then follow

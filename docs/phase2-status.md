@@ -45,6 +45,12 @@ the VM was found temporarily attached to Hyper-V's Default Switch and was
 reconnected live to `Lantern External Wi-Fi`. Key-based SSH and all Lantern
 services were restored without rebooting the VM.
 
+Later on 2026-07-13, the uplink changed to Samsung USB tethering. A second
+external switch, `Lantern External Samsung USB`, restored the VM at
+`192.168.102.253`; Windows received `192.168.102.40` and the gateway became
+`192.168.102.124`. Core DNS, HTTP(S), SSH, and RustDesk listeners were verified
+from Windows after the runtime addresses were reconciled.
+
 ## Source-of-truth boundary
 
 Git tracks VM sizing, network intent, bootstrap scripts, service definitions,

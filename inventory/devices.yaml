@@ -1,7 +1,7 @@
 ---
 domain: home.arpa
 discovered_at: "2026-07-11T23:30:00+04:00"
-updated_at: "2026-07-13T16:00:00+04:00"
+updated_at: "2026-07-13T22:55:00+04:00"
 
 devices:
   windows:
@@ -10,9 +10,9 @@ devices:
     role: application-host
     os: Windows 11 Pro build 26200
     interfaces:
-      - name: Wi-Fi
-        mac: "44:E5:17:99:4D:B4"
-        ipv4: 192.168.202.218
+      - name: vEthernet (Lantern External Samsung USB)
+        mac: "02:30:6A:0E:7A:04"
+        ipv4: 192.168.102.40
         prefix_length: 24
         assignment: dhcp
         reservation_confirmed: false
@@ -20,7 +20,7 @@ devices:
     rdp_supported: true
     rdp_enabled: false
     notes:
-      - Active discovery network was AAMSNote20Ultra5G and may be temporary.
+      - Current uplink is Samsung USB tethering and remains temporary.
 
   lantern-core:
     hostname: lantern-core
@@ -38,11 +38,11 @@ devices:
       disk_gib: 40
     interfaces:
       - name: eth0
-        ipv4: 192.168.202.253
+        ipv4: 192.168.102.253
         prefix_length: 24
         assignment: dhcp
         reservation_confirmed: false
-    gateway: 192.168.202.188
+    gateway: 192.168.102.124
     notes:
-      - Current hotspot lease observed after a hotspot reconnect; it may change.
+      - Current Samsung USB tether lease observed after reconnect; it may change.
       - Attach to a Hyper-V external switch, not Default Switch or WSL NAT.

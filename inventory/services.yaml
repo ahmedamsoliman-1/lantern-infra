@@ -1,13 +1,13 @@
 ---
 domain: home.arpa
 discovered_at: "2026-07-11T23:30:00+04:00"
-updated_at: "2026-07-13T16:00:00+04:00"
+updated_at: "2026-07-13T22:55:00+04:00"
 
 services:
   windows-ssh:
     hostname: windows
     protocol: tcp
-    upstream: 192.168.202.218:22
+    upstream: 192.168.102.40:22
     state: discovered
     public_on_lan: true
     authentication: ssh
@@ -15,7 +15,7 @@ services:
   photos:
     hostname: photos
     protocol: http
-    upstream: 192.168.202.218:2283
+    upstream: 192.168.102.40:2283
     health_path: /
     state: deployed-https-monitored
     public_on_lan: true
@@ -24,7 +24,7 @@ services:
   kibana:
     hostname: kibana
     protocol: http
-    upstream: 192.168.202.218:5601
+    upstream: 192.168.102.40:5601
     health_path: /
     state: discovered
     public_on_lan: false
@@ -35,7 +35,7 @@ services:
   elastic:
     hostname: elastic
     protocol: http
-    upstream: 192.168.202.218:9200
+    upstream: 192.168.102.40:9200
     health_path: /
     state: discovered
     public_on_lan: false
@@ -70,12 +70,28 @@ services:
   dns-resolver:
     hostname: lantern-core
     protocol: dns
-    upstream: 192.168.202.253:53
+    upstream: 192.168.102.253:53
     state: deployed
     public_on_lan: true
     implementation: Pi-hole 2026.07.2
     notes:
       - Current address is a hotspot DHCP lease and may change after restart.
+
+  rustdesk-id:
+    hostname: lantern-core
+    protocol: tcp-and-udp
+    upstream: 192.168.102.253:21116
+    state: deployed-lan-only
+    public_on_lan: true
+    implementation: RustDesk Server OSS hbbs 1.1.15
+
+  rustdesk-relay:
+    hostname: lantern-core
+    protocol: tcp
+    upstream: 192.168.102.253:21117
+    state: deployed-lan-only
+    public_on_lan: true
+    implementation: RustDesk Server OSS hbbr 1.1.15
 
   containers:
     hostname: containers

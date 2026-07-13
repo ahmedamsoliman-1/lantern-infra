@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 COMPOSE := docker compose -f compose/compose.yaml
 
-.PHONY: bootstrap validate deploy deploy-dns deploy-web deploy-https status logs update backup test stop
+.PHONY: bootstrap validate deploy deploy-dns deploy-web deploy-https deploy-rustdesk reconcile-network status logs update backup test stop
 
 bootstrap:
 	./scripts/bootstrap.sh
@@ -20,6 +20,13 @@ deploy-web: validate
 
 deploy-https: validate
 	./scripts/deploy-https.sh
+
+deploy-rustdesk: validate
+	./scripts/deploy-rustdesk.sh
+
+reconcile-network:
+	@test -n "$(WINDOWS_IP)" || { echo 'Usage: sudo make reconcile-network WINDOWS_IP=<current-Windows-LAN-IP>' >&2; exit 1; }
+	./scripts/reconcile-network.sh "$(WINDOWS_IP)"
 
 status:
 	./scripts/status.sh

@@ -1,5 +1,20 @@
-# Phase 7 placeholder. Pin and validate RustDesk Server OSS images immediately
-# before deployment; do not expose these ports through the router.
 name: lantern-rustdesk
-services: {}
 
+services:
+  hbbs:
+    image: ${RUSTDESK_SERVER_IMAGE:-rustdesk/rustdesk-server:1.1.15-amd64@sha256:696eeb859a7191e95eca697e5fbfffaaffa47dc4f8b339dad1a35312b7b6972e}
+    command: hbbs -r ${LANTERN_CORE_IP:?Set LANTERN_CORE_IP}:21117
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./data:/root
+    depends_on:
+      - hbbr
+
+  hbbr:
+    image: ${RUSTDESK_SERVER_IMAGE:-rustdesk/rustdesk-server:1.1.15-amd64@sha256:696eeb859a7191e95eca697e5fbfffaaffa47dc4f8b339dad1a35312b7b6972e}
+    command: hbbr
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./data:/root

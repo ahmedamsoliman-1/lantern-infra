@@ -45,8 +45,8 @@ The dashboard is immediately visible at the current VM IP. Friendly names work
 when a client uses Lantern Core as DNS. During the trial, preserve this rollback:
 
 ```text
-Lantern DNS: 192.168.202.253
-Fallback DNS: 192.168.202.188
+Lantern DNS: 192.168.102.253
+Fallback DNS: 192.168.102.124
 ```
 
 Because the hotspot lease may change, do not treat the current address as a
