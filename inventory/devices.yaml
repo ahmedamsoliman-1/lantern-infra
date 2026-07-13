@@ -1,6 +1,7 @@
 ---
 domain: home.arpa
 discovered_at: "2026-07-11T23:30:00+04:00"
+updated_at: "2026-07-13T16:00:00+04:00"
 
 devices:
   windows:
@@ -11,7 +12,7 @@ devices:
     interfaces:
       - name: Wi-Fi
         mac: "44:E5:17:99:4D:B4"
-        ipv4: 192.168.215.218
+        ipv4: 192.168.202.218
         prefix_length: 24
         assignment: dhcp
         reservation_confirmed: false
@@ -25,7 +26,7 @@ devices:
     hostname: lantern-core
     dns_name: lantern-core.home.arpa
     role: infrastructure
-    state: installed-awaiting-bootstrap
+    state: operational
     hosting: Hyper-V Generation 2 VM
     os: Ubuntu Server LTS
     resources:
@@ -37,11 +38,11 @@ devices:
       disk_gib: 40
     interfaces:
       - name: eth0
-        ipv4: 192.168.215.253
+        ipv4: 192.168.202.253
         prefix_length: 24
         assignment: dhcp
         reservation_confirmed: false
-    gateway: 192.168.215.63
+    gateway: 192.168.202.188
     notes:
-      - Current hotspot lease observed after first boot; it may change.
+      - Current hotspot lease observed after a hotspot reconnect; it may change.
       - Attach to a Hyper-V external switch, not Default Switch or WSL NAT.

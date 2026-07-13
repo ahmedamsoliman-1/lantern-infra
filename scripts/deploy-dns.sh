@@ -13,6 +13,7 @@ set +a
 : "${LANTERN_CORE_IP:?Set LANTERN_CORE_IP in .env}"
 : "${WINDOWS_LAN_IP:?Set WINDOWS_LAN_IP in .env}"
 : "${UPSTREAM_DNS:?Set UPSTREAM_DNS in .env}"
+LAN_SUBNET="${LAN_SUBNET:-192.168.0.0/16}"
 
 actual_ip="$(hostname -I | tr ' ' '\n' | grep -Fx "$LANTERN_CORE_IP" || true)"
 if [[ -z "$actual_ip" ]]; then
@@ -47,8 +48,8 @@ for attempt in {1..30}; do
   sleep 2
 done
 
-ufw allow from 192.168.215.0/24 to "$LANTERN_CORE_IP" port 53 proto tcp comment 'Lantern DNS TCP from LAN'
-ufw allow from 192.168.215.0/24 to "$LANTERN_CORE_IP" port 53 proto udp comment 'Lantern DNS UDP from LAN'
+ufw allow from "$LAN_SUBNET" to any port 53 proto tcp comment 'Lantern DNS TCP from private LAN'
+ufw allow from "$LAN_SUBNET" to any port 53 proto udp comment 'Lantern DNS UDP from private LAN'
 
 ./scripts/test-dns.sh
 echo 'Pi-hole DNS is healthy. Client DNS settings have not been changed.'

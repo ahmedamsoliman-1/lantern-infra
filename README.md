@@ -9,11 +9,12 @@ Hyper-V and remains private to the trusted LAN.
 
 - Phase 0 host discovery: complete
 - Phase 1 repository bootstrap: complete
-- Phase 2 VM: operational; disk expansion and final restart checks pending
+- Phase 2 VM: operational; root filesystem expanded to 37 GiB
 - Phase 3 DNS: Pi-hole deployed and verified with direct Windows queries
 - Phase 4 HTTP: Caddy, Homepage, Uptime Kuma, Pi-hole UI, and Immich routes verified
 - Phase 5 HTTPS: deployed; named routes work, Windows browser trust remains unresolved
-- Remaining services: not deployed
+- Phase 6 monitoring: complete; six monitors and outage persistence verified
+- Phase 7 remote desktop: next
 - Network addresses: hotspot DHCP; current Lantern Core lease is provisional
 
 Start with [the architecture](docs/architecture.md), then follow

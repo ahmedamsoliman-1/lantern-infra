@@ -17,7 +17,7 @@ Routes:
 
 Deployed and verified on 2026-07-12. Caddy successfully reached Homepage,
 Uptime Kuma, Pi-hole, and Windows-hosted Immich. The direct-IP Homepage fallback
-also passed. UFW opened TCP port 80 from `192.168.215.0/24` only after all route
+also passed. UFW opened TCP port 80 from private `192.168.0.0/16` clients only after all route
 checks completed. An initial Homepage `502` occurred during container startup;
 the guarded retry passed once Homepage became ready.
 
@@ -45,8 +45,8 @@ The dashboard is immediately visible at the current VM IP. Friendly names work
 when a client uses Lantern Core as DNS. During the trial, preserve this rollback:
 
 ```text
-Lantern DNS: 192.168.215.253
-Fallback DNS: 192.168.215.63
+Lantern DNS: 192.168.202.253
+Fallback DNS: 192.168.202.188
 ```
 
 Because the hotspot lease may change, do not treat the current address as a

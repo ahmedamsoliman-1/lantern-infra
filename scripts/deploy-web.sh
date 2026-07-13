@@ -12,6 +12,7 @@ set +a
 
 : "${LANTERN_CORE_IP:?Set LANTERN_CORE_IP in .env}"
 : "${WINDOWS_LAN_IP:?Set WINDOWS_LAN_IP in .env}"
+LAN_SUBNET="${LAN_SUBNET:-192.168.0.0/16}"
 
 if ! hostname -I | tr ' ' '\n' | grep -Fxq "$LANTERN_CORE_IP"; then
   echo "Configured LANTERN_CORE_IP=$LANTERN_CORE_IP is not assigned to this VM." >&2
@@ -65,7 +66,7 @@ if (( failed )); then
   exit 1
 fi
 
-ufw allow from 192.168.215.0/24 to "$LANTERN_CORE_IP" port 80 proto tcp comment 'Lantern HTTP from LAN'
+ufw allow from "$LAN_SUBNET" to any port 80 proto tcp comment 'Lantern HTTP from private LAN'
 
 docker compose --env-file .env -f compose/compose.yaml ps \
   caddy homepage uptime-kuma

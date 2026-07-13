@@ -1,6 +1,6 @@
 # Phase 2 status — Lantern Core VM
 
-Last updated: 2026-07-12.
+Last updated: 2026-07-13.
 
 ## Completed
 
@@ -19,25 +19,31 @@ Last updated: 2026-07-12.
   Chrony, unattended upgrades, Git, Make, DNS tools, and UFW are installed.
 - Docker is enabled and active, and the operator can access its socket after a
   fresh login.
-- UFW is enabled with deny-by-default inbound policy and SSH permitted only
-  from `192.168.215.0/24`.
+- UFW is enabled with deny-by-default inbound policy and SSH permitted from
+  the private `192.168.0.0/16` range.
 - `make validate` passed on Lantern Core, including Compose rendering and native
   validation with the pinned Caddy 2.11.4 image.
 
 ## Pending acceptance checks
 
-- Inspect the LVM layout: the virtual disk is 40 GiB, but `/` currently reports
-  about 18 GiB usable. Expand the root logical volume if the remaining space is
-  free in the volume group.
 - Reboot after bootstrap and confirm SSH and Docker return automatically.
 - Confirm OpenSSH is reachable from the Mac when it is available.
 
-Ubuntu initially received `192.168.215.252/24` and received
-`192.168.215.253/24` after a later restart, confirming that the hotspot lease is
-not stable. The default gateway remains `192.168.215.63`. OpenSSH is enabled and
-active, and key-based SSH from Windows was confirmed by the operator. The
-address must be rechecked after VM or hotspot restarts until Phase 3 provides a
-more durable discovery/update mechanism.
+## Storage expansion
+
+On 2026-07-12, `/dev/ubuntu-vg/ubuntu-lv` was expanded online from 18.47 GiB to
+36.95 GiB using all free volume-group extents. `resize2fs` expanded the mounted
+ext4 filesystem successfully. The resulting root filesystem reports 37 GiB
+total, 26 GiB available, and 27% usage. No reboot or service interruption was
+required.
+
+Ubuntu initially received `192.168.215.252/24`, then `192.168.215.253/24`.
+After a hotspot reconnect on 2026-07-13, the LAN changed to
+`192.168.202.0/24`; Windows received `192.168.202.218`, Lantern Core received
+`192.168.202.253`, and the gateway became `192.168.202.188`. During recovery,
+the VM was found temporarily attached to Hyper-V's Default Switch and was
+reconnected live to `Lantern External Wi-Fi`. Key-based SSH and all Lantern
+services were restored without rebooting the VM.
 
 ## Source-of-truth boundary
 

@@ -8,16 +8,16 @@ services:
       TZ: ${TZ:-Asia/Dubai}
       WEBPASSWORD_FILE: pihole_web_password
       FTLCONF_dns_listeningMode: ALL
-      FTLCONF_dns_upstreams: ${UPSTREAM_DNS:-192.168.215.63}
+      FTLCONF_dns_upstreams: ${UPSTREAM_DNS:-192.168.202.188}
       FTLCONF_dns_domain_name: ${LANTERN_DOMAIN:-home.arpa}
       FTLCONF_dns_hosts: |-
-        ${LANTERN_CORE_IP:-192.168.215.253} lantern-core.home.arpa dashboard.home.arpa status.home.arpa dns.home.arpa photos.home.arpa
-        ${WINDOWS_LAN_IP:-192.168.215.218} windows.home.arpa
+        ${LANTERN_CORE_IP:-192.168.202.253} lantern-core.home.arpa dashboard.home.arpa status.home.arpa dns.home.arpa photos.home.arpa
+        ${WINDOWS_LAN_IP:-192.168.202.218} windows.home.arpa
     ports:
       # Bind only to the VM's LAN address so systemd-resolved can retain its
       # loopback stub on 127.0.0.53:53.
-      - "${LANTERN_CORE_IP:-192.168.215.253}:53:53/tcp"
-      - "${LANTERN_CORE_IP:-192.168.215.253}:53:53/udp"
+      - "${LANTERN_CORE_IP:-192.168.202.253}:53:53/tcp"
+      - "${LANTERN_CORE_IP:-192.168.202.253}:53:53/udp"
     volumes:
       - pihole_data:/etc/pihole
     secrets:
@@ -29,11 +29,11 @@ services:
     image: ${CADDY_IMAGE:-caddy:2.11.4}
     restart: unless-stopped
     environment:
-      LANTERN_CORE_IP: ${LANTERN_CORE_IP:-192.168.215.253}
-      WINDOWS_LAN_IP: ${WINDOWS_LAN_IP:-192.168.215.218}
+      LANTERN_CORE_IP: ${LANTERN_CORE_IP:-192.168.202.253}
+      WINDOWS_LAN_IP: ${WINDOWS_LAN_IP:-192.168.202.218}
     ports:
-      - "${LANTERN_CORE_IP:-192.168.215.253}:80:80"
-      - "${LANTERN_CORE_IP:-192.168.215.253}:443:443"
+      - "${LANTERN_CORE_IP:-192.168.202.253}:80:80"
+      - "${LANTERN_CORE_IP:-192.168.202.253}:443:443"
     volumes:
       - ../services/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
@@ -45,7 +45,7 @@ services:
     image: ${HOMEPAGE_IMAGE:-ghcr.io/gethomepage/homepage:v1.13.1}
     restart: unless-stopped
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: dashboard.home.arpa,${LANTERN_CORE_IP:-192.168.215.253}
+      HOMEPAGE_ALLOWED_HOSTS: dashboard.home.arpa,${LANTERN_CORE_IP:-192.168.202.253}
     volumes:
       - ../services/homepage:/app/config
     networks:

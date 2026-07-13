@@ -1,12 +1,13 @@
 ---
 domain: home.arpa
 discovered_at: "2026-07-11T23:30:00+04:00"
+updated_at: "2026-07-13T16:00:00+04:00"
 
 services:
   windows-ssh:
     hostname: windows
     protocol: tcp
-    upstream: 192.168.215.218:22
+    upstream: 192.168.202.218:22
     state: discovered
     public_on_lan: true
     authentication: ssh
@@ -14,16 +15,16 @@ services:
   photos:
     hostname: photos
     protocol: http
-    upstream: 192.168.215.218:2283
+    upstream: 192.168.202.218:2283
     health_path: /
-    state: deployed-via-caddy-http
+    state: deployed-https-monitored
     public_on_lan: true
     implementation: Immich v2.7.5
 
   kibana:
     hostname: kibana
     protocol: http
-    upstream: 192.168.215.218:5601
+    upstream: 192.168.202.218:5601
     health_path: /
     state: discovered
     public_on_lan: false
@@ -34,7 +35,7 @@ services:
   elastic:
     hostname: elastic
     protocol: http
-    upstream: 192.168.215.218:9200
+    upstream: 192.168.202.218:9200
     health_path: /
     state: discovered
     public_on_lan: false
@@ -47,7 +48,7 @@ services:
     protocol: http
     upstream: homepage:3000
     health_path: /
-    state: deployed-http
+    state: deployed-https-monitored
     public_on_lan: true
 
   status:
@@ -55,7 +56,7 @@ services:
     protocol: http
     upstream: uptime-kuma:3001
     health_path: /
-    state: deployed-http-awaiting-setup
+    state: deployed-https-monitored
     public_on_lan: true
 
   dns:
@@ -63,13 +64,13 @@ services:
     protocol: http
     upstream: pihole
     health_path: /admin/
-    state: deployed-http
+    state: deployed-https-monitored
     public_on_lan: true
 
   dns-resolver:
     hostname: lantern-core
     protocol: dns
-    upstream: 192.168.215.253:53
+    upstream: 192.168.202.253:53
     state: deployed
     public_on_lan: true
     implementation: Pi-hole 2026.07.2

@@ -6,7 +6,7 @@ if [[ ${EUID} -ne 0 ]]; then
   exit 1
 fi
 
-LAN_SUBNET="${LAN_SUBNET:-192.168.215.0/24}"
+LAN_SUBNET="${LAN_SUBNET:-192.168.0.0/16}"
 OPERATOR_USER="${SUDO_USER:-ahmed}"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 

@@ -1,6 +1,9 @@
 # Lantern Core VM installation
 
-This runbook uses the currently available `192.168.215.0/24` hotspot network.
+This runbook uses the currently available hotspot network. Because the hotspot
+has moved between `192.168.x.0/24` networks, UFW trusts the private
+`192.168.0.0/16` range while Compose continues to bind to the VM's exact DHCP
+address.
 The VM starts with DHCP; its observed address becomes the inventory value.
 
 ## 1. Download and verify Ubuntu
@@ -56,7 +59,7 @@ Copy or clone the repository, then run inside Ubuntu:
 
 ```sh
 cd /opt/lantern
-sudo env LAN_SUBNET=192.168.215.0/24 bash ./scripts/bootstrap-core.sh
+sudo env LAN_SUBNET=192.168.0.0/16 bash ./scripts/bootstrap-core.sh
 hostname -I
 make validate
 ```
